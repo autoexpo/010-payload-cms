@@ -22,12 +22,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Create migration
-        run: pnpm payload migrate:create || true
-        env:
-          PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
-
-      - name: Deploy
+      - name: Deploy (migrate + build + deploy)
         run: pnpm run deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
